@@ -1,0 +1,9 @@
+Proof that morphisms of natural models are precisely weak morphisms in the sense of Clive Newstead (the PhD student of Awodey). Prerequisite: proof that natural models can be described via adjoints!
+
+Endings of environments like definitions, remarks, examples,...
+
+Explicit names of environments where possible
+
+Fibrations are pullback-stable
+
+Explain that DFib^{\to} is a lax limit in the sense of Chapter 1 -- reformulate the proof of Lemma 4.1.5
