@@ -1687,7 +1687,7 @@ In every stage that follows (except the very first), we consider a pullback that
     \item all the 2-categories have flexible limits and the 2-functors preserve them.
 \end{enumerate}
 As a result, the new `approximation' is also accessible with flexible limits by \ref{lp}.
-\subsection{Stage 1: Categories with Markes Arrows and Squares -- $\Cat_{m,sq}$}
+\subsection{Stage 1: Categories with Marked Arrows and Squares -- $\Cat_{m,sq}$}
 First, we use Theorem \ref{gab-ulm} to construct the 1-category $\Cat_{m,sq}$ of categories with a wide subcategory and a chosen subcategory of squares.
 \begin{defi}
     Let $\C$ be a category. Its subcategory $M$ is called \emph{wide} if its collection of objects is that of $\C$. Arrows in $M$ are referred to as \emph{marked}.
@@ -1815,61 +1815,93 @@ Let $(\C,M,S)$ be a marked category. We define $(\C,M,S)^{\mathbf{2}}$ as the fo
 \end{tikzcd}\]
 	It should be stressed that we are still following the convention that a domain of a square is drawn on the left -- therefore its domain is the left square with $f$ and $h$.
 \end{itemize}
-The proof that this construction works is exactly the same as in $\Cat$, so we omit it.
+The limiting cone is the same as in $\Cat$, and so is the proof that this construction works, so we omit it.
 \end{proof}
 
 \begin{lemma}
-    The 2-category $\Cat_m$ is an accessible 2-category with filtered colimits.
+	The 2-category $\Cat_{m,sq}$ is an accessible 2-category with filtered colimits.
 \end{lemma}
 \begin{proof}
-	From the discussion before \ref{def:2Cat_m,sq}, we know that the last missing piece is commutativity of powers by $\mathbf{2}$, and directed colimits. However, both are computed in $\Cat$, and they commute there, hence they commute also in $\Cat_m$.
+	From the discussion before \ref{def:2Cat_m,sq}, we know that the last missing piece is commutativity of powers by $\mathbf{2}$, and directed colimits. However, both are computed in $\Cat$, and they commute there, hence they commute also in $\Cat_{m,sq}$.
 \end{proof}
 
 \begin{lemma}
-    The 2-category $\Cat_m$ has copowers by $\mathbf{2}$.
+	The 2-category $\Cat_{m,sq}$ has copowers by $\mathbf{2}$.
 \end{lemma}
 \begin{proof}
-Let $(\C,S)$ be a marked category. We define $(\C,S)\cdot{\mathbf{2}}$ as the following marked category:
+Let $(\C,M,S)$ be a marked category. We define $(\C,M,S)\cdot{\mathbf{2}}$ as the following marked category:
 \begin{itemize}
     \item its objects are pairs $(c\in\C, x\in\mathbf{2})$;
     \item its arrows $(c,x)\to(c',x')$ are pairs of arrows $(f\colon c\to c',g\colon x\to x')$;
-    \item its marked subcategory consists of pairs such that their first component is in $S$, and the second is an identity.
+    \item its marked subcategory consists of pairs such that their first component is in $M$, and the second is an identity;
+	\item its squares are generated under composites from the following three types:
+		\begin{itemize}
+			\item for every chosen square in $\C$
+    $$
+        \begin{tikzcd}
+        a\ar[r] \ar[d] & b\ar[d]\\
+        c\ar[r] &d,
+		\arrow["\mathcal{S}"{anchor=center, style = {font=\normalsize}}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+    $$
+			the following square is chosen in $(\C,M,S)\cdot\mathbf{2}$:
+    $$
+        \begin{tikzcd}
+		(a,0)\ar[r] \ar[d] & (b,0)\ar[d]\\
+		(c,0)\ar[r] &(d,0);
+		\arrow["\mathcal{S}"{anchor=center, style = {font=\normalsize}}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+    $$
+			\item the same as in the previous item, just with ones in the second component;
+			\item for every marked arrow $f\colon c\rightarrowtriangle d$ in $\C$, the following square is chosen:
+    $$
+        \begin{tikzcd}
+			{(c,0)}\ar[r, "{(c, \leq)}"] \ar[d, "{(f,0)}"'] & {(c,1)}\ar[d, "{(f,1)}"]\\
+			{(d,0)}\ar[r, "{(d,\leq)}"'] & {(d,1)}.
+		\arrow["\mathcal{S}"{anchor=center, style = {font=\normalsize}}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+    $$
+		\end{itemize}
 \end{itemize}
-The proof of correctness is the same as for $\Cat$, and therefore omitted.
+The colimiting cocone and the proof of correctness are the same in $\Cat$, and therefore omitted.
 \end{proof}
 Altogether, we obtained:
 \begin{thm}\label{catm is in wlp}
-    The 2-category $\Cat_m$ belongs to $\wLP$. Moreover, the forgetful functor $U_c\colon\Cat_m\to\Cat$ is a morphism in $\wLP$.
+	The 2-category $\Cat_{m,sq}$ belongs to $\wLP$. Moreover, the forgetful functor $U_c\colon\Cat_{m,sq}\to\Cat$ is a morphism in $\wLP$.
 \end{thm}
 \begin{proof}
-    We already know that $\Cat_m$ is accessible, so it remains that it has flexible limits. A direct consequence of the preceding lemmas is that $\Cat_m$ has all 2-limits, especially all flexible. The forgetful functor is in $\wLP$ as all the limits and colimits in question are actually computed in $\Cat$.
+	We already know that $\Cat_{m,sq}$ is accessible, so it remains that it has flexible limits. 
+	A direct consequence of the preceding lemmas is that $\Cat_{m,sq}$ has all 2-limits, especially all flexible. 
+	The forgetful functor is in $\wLP$ as all the limits and colimits in question are actually computed in $\Cat$.
 \end{proof}
-Before, we move further, we prove one useful result about $\Cat_m$:
+Before, we move further, we prove one useful result about $\Cat_{m,sq}$:
 \begin{lemma}\label{triangle wlp}
-    Let $\rightarrowtriangle$ be a marked category, whose underlying category is $\mathbf{2}$, and all its arrows are marked. Then the 2-functor $\Cat_m(\rightarrowtriangle,-)\colon\Cat_m\to\Cat$ preserves filtered colimits and flexible limits.
+	Let $\rightarrowtriangle$ be the marked category with squares, whose underlying category is $\mathbf{2}$, all its arrows are marked, and only the necessary squares (with identities in horizontal direction) are chosen. 
+	Then the 2-functor $\Cat_{m,sq}(\rightarrowtriangle,-)\colon\Cat_{m,sq}\to\Cat$ preserves filtered colimits and flexible limits.
 \end{lemma}
 \begin{proof}
-Flexible limits follows as we have a representable 2-functor (that preserves all 2-limits).
+Flexible limits follow as we have a representable 2-functor (that preserves all 2-limits).
 
-Since we have powers by $\mathbf{2}$, the  2-dimensional universal property of filtered colimits follows from the 1-dimensional. Therefore, we can equivalently just prove that $\Cat_m(\rightarrowtriangle,-)$ preserves filtered colimits as a 1-functor.
+Since we have powers by $\mathbf{2}$, the  2-dimensional universal property of filtered colimits follows from the 1-dimensional. 
+	Therefore, we can equivalently just prove that $\Cat_{m,sq}(\rightarrowtriangle,-)$ preserves filtered colimits as a 1-functor.
 
 We gather a few facts:
 \begin{enumerate}
-    \item The functor $\Cat(\mathbb2,-)\colon\Cat\to\Set$ is conservative:
+	\item The functor $\Cat(\mathbf{2},-)\colon\Cat\to\Set$ is conservative:
     Whenever $F\colon\C\to\D$ is a functor such that its action on morphisms has an inverse $G_1$, we can extend $G_1$ to a functor $G\colon\D\to\C$ by setting $G(d)$ to be the domain (or codomain) of $G_1(id_c)$. The functor $G$ is an inverse to $F$.
-    \item The functor $\Cat(\mathbb2,-)\colon\Cat\to\Set$ reflects filtered colimits:
+\item The functor $\Cat(\mathbf{2},-)\colon\Cat\to\Set$ reflects filtered colimits:
     This follows from the previous item and \cite[Proposition 2.9.7]{Borceux_1994}.
 \end{enumerate}
 Using the second point, we can equivalently prove that the composite
-$$H:=\Cat_m\xrightarrow{\Cat_m(\rightarrowtriangle,-)}\Cat\xrightarrow{\Cat(\mathbb2,-)}\Set$$
-preserves filtered colimits. This composite sends a marked category $(\C,S)$ to the set of all commutative squares in $\C$ such that both top and bottom arrows are marked:
+	$$H:=\Cat_{m,sq}\xrightarrow{\Cat_{m,sq}(\rightarrowtriangle,-)}\Cat\xrightarrow{\Cat(\mathbf{2},-)}\Set$$
+preserves filtered colimits. This composite sends a marked category with squares $(\C, M, S)$ to the set of all commutative squares in $\C$ such that both left and right arrows are marked:
 $$
 \begin{tikzcd}
-    \bullet\ar[r, -tri]\ar[d] &\bullet\ar[d]\\
-    \bullet\ar[r, -tri] &\bullet.
+    \bullet\ar[r]\ar[d, -tri] &\bullet\ar[d, -tri]\\
+    \bullet\ar[r] &\bullet.
 \end{tikzcd}
 $$
-This functor fits the following pullback square of functors $\Cat_m\to\Set$:
+	This functor fits the following pullback square of functors $\Cat_{m,sq}\to\Set$:
 % https://q.uiver.app/#q=WzAsNCxbMCwwLCJIIl0sWzAsMiwiU18xXFx0aW1lc197Q18wfUNfMSJdLFsyLDIsIkNfMS4iXSxbMiwwLCJDXzFcXHRpbWVzX3tDXzB9U18xIl0sWzAsMV0sWzEsMiwibSIsMl0sWzMsMiwibSJdLFswLDNdLFswLDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
 \[\begin{tikzcd}
 	H && {C_1\times_{C_0}S_1} \\
@@ -1881,17 +1913,19 @@ This functor fits the following pullback square of functors $\Cat_m\to\Set$:
 	\arrow["m", from=1-3, to=3-3]
 	\arrow["m"', from=3-1, to=3-3]
 \end{tikzcd}\]
-More concretely, the bottom arrow $m$ picks a composable pair of a marked arrow and an ordinary arrow and composes them. The domain of $m$ is again expressible as a pullback. Since all the involved functors $S_1,C_1, C_0\colon\Cat_m\to\Set$ preserve filtered colimits (they are of the form $Mod(f)$ for a morphism $f\in\Lex$), $H$ preserves filtered colimits as a finite limit of these.
+More concretely, the bottom arrow $m$ picks a composable pair of a marked arrow and an ordinary arrow and composes them. 
+	The domain of $m$ is again expressible as a pullback. 
+	Since all the involved functors $S_1,C_1, C_0\colon\Cat_{m,sq}\to\Set$ preserve filtered colimits (they are of the form $Mod(f)$ for a morphism $f\in\Lex$), $H$ preserves filtered colimits as a finite limit of these.
 \end{proof}
 \begin{nota}
-    We write $(-)^\rightarrowtriangle$ for the functor $\Cat_m(\rightarrowtriangle,-)$.
+	We write $(-)^\rightarrowtriangle$ for the functor $\Cat_{m,sq}(\rightarrowtriangle,-)$.
 \end{nota}
 
 
-\subsection{Stage 2: Categories with a Subcategory Containing all Isomorphisms -- $\Cat_{m^+}$}\label{sec:rep has isos}
-In the second stage, we take $\Cat_m$, and force all isomorphisms to be marked.
+\subsection{Stage 2: Marked arrows contain all Isomorphisms -- $\Cat_{m^+, sq}$}\label{sec:rep has isos}
+In the second stage, we take $\Cat_{m,sq}$, and force all isomorphisms to be marked.
 
-Let $\mathcal{M}$ be a marked category. Then we have the following inclusion functors ($I$ is the free isomorphism):
+Let $\mathcal{M}$ be a marked category with squares. Then we have the following inclusion functors ($I$ is the free isomorphism):
 % https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXG1hdGhjYWwgTSJdLFsxLDEsIlVfY1xcbWF0aGNhbCBNXntcXG1hdGhiZjJ9LiJdLFsxLDAsIlVfY1xcbWF0aGNhbCBNXkkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
 \[\begin{tikzcd}
 	& {U_c\mathcal M^I} \\
@@ -1908,12 +1942,12 @@ To say that all isomorphisms are in $S$ is the same as asking for an existence o
 	\arrow[hook, from=1-2, to=2-2]
 	\arrow[hook, from=2-1, to=2-2]
 \end{tikzcd}\]
-Therefore, we can construct $\Cat_{m^+}$ -- the 2-category of categories equipped with a subcategory that contains all isomorphisms -- as the following pullback:
+Therefore, we can construct $\Cat_{m^+, sq}$ -- the 2-category of categories equipped with squares and a subcategory that contains all isomorphisms -- as the following pullback:
 % https://q.uiver.app/#q=WzAsNCxbMCwyLCJcXENhdF9tIl0sWzIsMiwiW0Nvc3AsXFxDYXRdIl0sWzIsMCwiW0NvbXAsXFxDYXRdIl0sWzAsMCwiXFxDYXRfe21eK30iXSxbMCwxLCJWIiwyXSxbMiwxLCJpXioiXSxbMywwXSxbMywyXSxbMywxLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
 \[\begin{tikzcd}
-	{\Cat_{m^+}} && {[Comp,\Cat]} \\
+	{\Cat_{m^+,sq}} && {[Comp,\Cat]} \\
 	\\
-	{\Cat_m} && {[Cosp,\Cat].}
+	{\Cat_{m,sq}} && {[Cosp,\Cat].}
 	\arrow[from=1-1, to=1-3]
 	\arrow[from=1-1, to=3-1]
 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
@@ -1944,12 +1978,16 @@ where $$D=\begin{tikzcd}
     \end{tikzcd}\in [Comp,\Cat].$$
     Then we can lift $D$ to $\overline{D}\in [Comp,\Cat]$ by setting the missing arrow $\E\to\C$ to $\alpha_1^{-1}\cdot F\cdot\alpha_3$. We clearly have that $\overline{D}i=D$ and components of $\alpha$ can be used as an isomorphism $\overline\alpha\colon\overline{D}\cong D'\in [Comp,\Cat]$. Thus, $i^*$ is an isofibration.
 \end{proof}
-All the functor categories are in $\mathbf{wLP}$ by the first item of Theorem \ref{lp}. Moreover, $i^*$ preserves all limits and colimits as it is both right and left 2-adjoint (to left and right Kan extensions). The 2-category $\Cat_m$ is in $\mathbf{wLP}$ by Theorem \ref{catm is in wlp}. Therefore, it remains to show that the 2-functor $V$ preserves filtered colimits and flexible limits. As these are computed pointwise in $[Cosp,\Cat]$, we can prove that all its three components ($\mathcal{M}\mapsto {U_c\mathcal M^I},U_c\mathcal M^{\mathbf2},\mathcal M^{\rightarrowtriangle}$) preserve those.
+All the functor categories are in $\mathbf{wLP}$ by the first item of Theorem \ref{lp}. 
+Moreover, $i^*$ preserves all limits and colimits as it is both right and left 2-adjoint (to left and right Kan extensions). 
+The 2-category $\Cat_{m,sq}$ is in $\mathbf{wLP}$ by Theorem \ref{catm is in wlp}. 
+Therefore, it remains to show that the 2-functor $V$ preserves filtered colimits and flexible limits. 
+As these are computed pointwise in $[Cosp,\Cat]$, we can prove that all its three components ($\mathcal{M}\mapsto {U_c\mathcal M^I},U_c\mathcal M^{\mathbf2},\mathcal M^{\rightarrowtriangle}$) preserve those.
 \begin{lemma}
     All the following 2-functors preserve flexible limits and filtered colimits:
     $$
     \begin{tikzcd}[row sep=tiny]
-        \Cat_m\ar[r] & \Cat\\
+		\Cat_{m,sq}\ar[r] & \Cat\\
         \mathcal M\ar[r, maps to] &U_c\mathcal M^I\\
         \mathcal M\ar[r, maps to] &U_c\mathcal M^{\mathbf2}\\
         \mathcal M\ar[r, maps to] &\mathcal M^{\rightarrowtriangle}.
@@ -1959,9 +1997,12 @@ All the functor categories are in $\mathbf{wLP}$ by the first item of Theorem \r
 \begin{proof}
 Properties of the last functor are proved in Lemma \ref{triangle wlp}.
 
-From Theorem \ref{catm is in wlp}, we know that the functor $U_c\colon\Cat_m\to\Cat$ is a morphism in $\wLP$. The functors $\Cat(\mathbf{2},-),\Cat(I,-)$ are represented by a finite category. As such they also preserve all 2-limits and filtered colimits. Hence, all the three considered functors are composites of functors preserving 2-limits and filtered colimits, as such, they preserve these as well.
+	From Theorem \ref{catm is in wlp}, we know that the functor $U_c\colon\Cat_{m,sq}\to\Cat$ is a morphism in $\wLP$. 
+	The functors $\Cat(\mathbf{2},-),\Cat(I,-)$ are represented by a finite category. 
+	As such they also preserve all 2-limits and filtered colimits. 
+	Hence, all the three considered functors are composites of functors preserving 2-limits and filtered colimits, as such, they preserve these as well.
 \end{proof}
-Therefore, we proved all the required properties mentioned in the beginning of this section. This implies that $\Cat_{m^+}$ is in $\mathbf{wLP}$. 
+Therefore, we proved all the required properties mentioned in the beginning of this section. This implies that $\Cat_{m^+,sq}$ is in $\mathbf{wLP}$. 
 
 \subsection{Stage 3: Categories with Finite Limits -- $\Lex$}\label{stage:lex}
 As objects of $\Rep$ have finite limits, we also make use of the 2-category $\mathbf{Lex}$ of categories with finite limits, finite-limits preserving functors, and natural transformations as one of our building blocks. A category has finite limits if and only if it has terminal objects and pullbacks, therefore, it suffices to add these. A category $\C$ has a terminal object if and only if the functor $!\colon\C\to 1$ has a right adjoint $t\colon 1\to\C$. Assuming axiom of choice, $\C$ has pullbacks if and only if the diagonal functor $\Delta\colon\C\to [Cosp, \C]$ has a right adjoint $\lim\colon[Cosp, \C]\to\C$. Moreover a functor $F\colon\C\to\D$ preserves terminal object if and only if the diagram
