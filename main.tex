@@ -1772,19 +1772,19 @@ Let $(\C,M,S)$ be a marked category. We define $(\C,M,S)^{\mathbf{2}}$ as the fo
     \item its arrows $f\to g$ are commutative squares
     $$
     \begin{tikzcd}
-        \bullet\ar[r, "f"] \ar[d] & \bullet\ar[d]\\
-        \bullet\ar[r, "g"] &\bullet;
+        \bullet\ar[r] \ar[d, "f"'] & \bullet\ar[d, "g"]\\
+        \bullet\ar[r] &\bullet;
     \end{tikzcd}
     $$
-    \item marked arrows are commutative squares in $S$ whose both components are marked:
+    \item marked arrows are commutative squares in $S$ whose both hotizontal components are marked:
     $$
         \begin{tikzcd}
-        \bullet\ar[r, "f"] \ar[-tri, d] & \bullet\ar[-tri, d]\\
-        \bullet\ar[r, "g"] &\bullet;
+        \bullet\ar[r, -tri] \ar[d, "f"'] & \bullet\ar[d, "g"]\\
+        \bullet\ar[r, -tri] &\bullet;
 		\arrow["\mathcal{S}"{anchor=center, style = {font=\normalsize}}, draw=none, from=1-1, to=2-2]
     \end{tikzcd}
     $$
-	\item a square 
+	\item a commutative square 
     $$
     \begin{tikzcd}
         f\ar[r] \ar[d] & g\ar[d]\\
@@ -1894,35 +1894,33 @@ We gather a few facts:
 \end{enumerate}
 Using the second point, we can equivalently prove that the composite
 	$$H:=\Cat_{m,sq}\xrightarrow{\Cat_{m,sq}(\rightarrowtriangle,-)}\Cat\xrightarrow{\Cat(\mathbf{2},-)}\Set$$
-preserves filtered colimits. This composite sends a marked category with squares $(\C, M, S)$ to the set of all commutative squares in $\C$ such that both left and right arrows are marked:
+preserves filtered colimits. This composite sends a marked category with squares $(\C, M, S)$ to the set of all chosen squares in $\C$ such that both their domain and codomain are marked:
 $$
 \begin{tikzcd}
     \bullet\ar[r]\ar[d, -tri] &\bullet\ar[d, -tri]\\
     \bullet\ar[r] &\bullet.
+	\arrow["\mathcal{S}"{anchor=center, style = {font=\normalsize}}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}
 $$
 	This functor fits the following pullback square of functors $\Cat_{m,sq}\to\Set$:
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJIIl0sWzAsMiwiU18xXFx0aW1lc197Q18wfUNfMSJdLFsyLDIsIkNfMS4iXSxbMiwwLCJDXzFcXHRpbWVzX3tDXzB9U18xIl0sWzAsMV0sWzEsMiwibSIsMl0sWzMsMiwibSJdLFswLDNdLFswLDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
 \[\begin{tikzcd}
-	H && {C_1\times_{C_0}S_1} \\
+	H && {M_1\times M_1} \\
 	\\
-	{S_1\times_{C_0}C_1} && {C_1.}
+	{S} && {C_1\times C_1.}
 	\arrow[from=1-1, to=1-3]
 	\arrow[from=1-1, to=3-1]
 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
-	\arrow["m", from=1-3, to=3-3]
-	\arrow["m"', from=3-1, to=3-3]
+	\arrow["{\iota_s\times \iota_s}", from=1-3, to=3-3]
+	\arrow["{(d_s,c_s)}"', from=3-1, to=3-3]
 \end{tikzcd}\]
-More concretely, the bottom arrow $m$ picks a composable pair of a marked arrow and an ordinary arrow and composes them. 
-	The domain of $m$ is again expressible as a pullback. 
-	Since all the involved functors $S_1,C_1, C_0\colon\Cat_{m,sq}\to\Set$ preserve filtered colimits (they are of the form $Mod(f)$ for a morphism $f\in\Lex$), $H$ preserves filtered colimits as a finite limit of these.
+	Since all the involved functors $S,C_1, M_1\colon\Cat_{m,sq}\to\Set$ preserve filtered colimits (they are of the form $Mod(f)$ for a morphism $f\in\Lex$), $H$ preserves filtered colimits as a finite limit of these.
 \end{proof}
 \begin{nota}
 	We write $(-)^\rightarrowtriangle$ for the functor $\Cat_{m,sq}(\rightarrowtriangle,-)$.
 \end{nota}
 
 
-\subsection{Stage 2: Marked arrows contain all Isomorphisms -- $\Cat_{m^+, sq}$}\label{sec:rep has isos}
+\subsection{Stage 2: Marked Arrows Contain All Isomorphisms -- $\Cat_{m^+, sq}$}\label{sec:rep has isos}
 In the second stage, we take $\Cat_{m,sq}$, and force all isomorphisms to be marked.
 
 Let $\mathcal{M}$ be a marked category with squares. Then we have the following inclusion functors ($I$ is the free isomorphism):
@@ -1933,7 +1931,7 @@ Let $\mathcal{M}$ be a marked category with squares. Then we have the following 
 	\arrow[hook, from=1-2, to=2-2]
 	\arrow[hook, from=2-1, to=2-2]
 \end{tikzcd}\]
-To say that all isomorphisms are in $S$ is the same as asking for an existence of a (necessarily unique) factorisation 
+To say that all isomorphisms are in $M$ is the same as asking for an existence of a (necessarily unique) factorisation 
 % https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXG1hdGhjYWwgTSJdLFsxLDEsIlVfY1xcbWF0aGNhbCBNXntcXG1hdGhiZjJ9LiJdLFsxLDAsIlVfY1xcbWF0aGNhbCBNXkkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMF1d
 \[\begin{tikzcd}
 	& {U_c\mathcal M^I} \\
@@ -2153,15 +2151,15 @@ $$
 Now, we need to check all the desired properties of the pullback. By Theorem \ref{lp}, we know that all the categories are in $\mathbf{wLP}$ and that $i^*$ is an isofibration that preserves all the structure of $\mathbf{wLP}$. All that is missing is that $V$ preserves the structure as well. It suffices to check it pointwise (by \ref{lp}(2)) since evaluations jointly reflect them. As the components are identity, constantly terminal object, or powering by a finite category, it holds.
 
 We can conclude that $\mathbf{Lex}$ belongs to $\mathbf{wLP}$.
-\subsection{Stage 4: Subcategory Containing Isomorphisms and Finite Limits -- $\Rep_0$}
-This time, we combine the two structures that we already created -- finite limits and a subcategory containing isomorphisms:
+\subsection{Stage 4: Marked Arrows, Chosen Squares and Finite Limits -- $\Rep_0$}
+This time, we combine the two structures that we already created -- finite limits with marked arrows (containing isomorphisms) and squares: 
 
 We define $\Rep_0$ by the following pullback:
 % https://q.uiver.app/#q=WzAsNCxbMCwyLCJcXENhdF97bV4rfSJdLFsyLDIsIlxcQ2F0Il0sWzIsMCwiXFxtYXRoYmZ7TGV4fSJdLFswLDAsIlxcUmVwXzAiXSxbMCwxXSxbMiwxXSxbMywwXSxbMywyXSxbMywxLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
 \[\begin{tikzcd}
 	{\Rep_0} && {\mathbf{Lex}} \\
 	\\
-	{\Cat_{m^+}} && \Cat.
+	{\Cat_{m^+, sq}} && \Cat.
 	\arrow[from=1-1, to=1-3]
 	\arrow[from=1-1, to=3-1]
 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
@@ -2205,10 +2203,10 @@ As before, all the 2-categories are in $\wLP$, and $i^*$ is an isofibration ther
 \end{lemma}
 \begin{proof}
     The first component, $\C\mapsto \C^{\rightarrowtriangle}$, is a composite of morphisms in $\wLP$
-    $$\Rep_0\to\Cat_{m^+}\to\Cat_m\xrightarrow{U_c}\Cat\xrightarrow{\Cat(\mathbf{\rightarrowtriangle,-})}\Cat,$$
+	$$\Rep_0\to\Cat_{m^+,sq}\to\Cat_{m,sq}\xrightarrow{\Cat_{m,sq}(\mathbf{\rightarrowtriangle,-})}\Cat,$$
     hence a morphism in $\wLP$.
 
-    It is the same with the second component, we just switch $\Cat(\mathbf{\rightarrowtriangle,-})$, and $\Cat(\mathbf{\mathbf{2},-})$.
+	It is similar with the second component, we just switch $\Cat_{m,sq}(\mathbf{\rightarrowtriangle,-})$, and $\Cat(\mathbf{\mathbf{2},-})\cdot U_c$.
 
     The last component can be expressed as the following pullback:
     $$
@@ -2224,7 +2222,13 @@ Thus, we have:
 \begin{thm}
     The 2-category $\Rep_A$ is in $\wLP$.
 \end{thm}
-\subsection{Stage 6: Representable Morphisms are Exponentiable -- $\Rep_B$}\label{sec:rep has exp}
+
+\subsection{Stage 6: Every Chosen Square Is A Pullback -- $\Rep_B$}
+In this stage, we ensure that every chosen square is a pullback square. 
+This gives us the desired notion of 2-cells.
+
+
+\subsection{Stage 7: Representable Morphisms are Exponentiable -- $\Rep_C$}\label{sec:rep has exp}
 In the last but one stage, we add exponentials along representable morphisms. That is, we need to add right adjoints to all the functors $f^*\colon\C/c\to\C/c'$ for a representable $f\colon c'\rightarrowtriangle c$. Since we cannot add these adjoints one by one, we choose a different approach. We consider the version of a pullback functor
 $$pb\colon\C^{
 \rightarrowtriangle\raisebox{4pt}{$\downarrow$}
