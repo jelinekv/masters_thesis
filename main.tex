@@ -2223,10 +2223,42 @@ Thus, we have:
     The 2-category $\Rep_A$ is in $\wLP$.
 \end{thm}
 
-\subsection{Stage 6: Every Chosen Square Is A Pullback -- $\Rep_B$}
-In this stage, we ensure that every chosen square is a pullback square. 
+\subsection{Stage 6: Chosen Squares Are Pullbacks -- $\Rep_B$}
+In this stage, we ensure that chosen squares are precisely pullback squares. 
 This gives us the desired notion of 2-cells.
 
+The idea is to again proceed similarly to the stage 2. 
+Given $\C\in\Rep_0$, we denote $\mathcal{S}(\C)$, $S(\C)$, and $Pb(\C)$ the categories of chosen squares in $\C$, commutative squares, and pullback squares respectively (precise definitions will be given later).
+
+Then pullbacks correspond to chosen squares in $\C$ if and only if we have factorisations in both directions in the following cospan:
+
+\[
+	\begin{tikzcd}
+				& {\mathcal{S}}(\C)\ar[d, hook]\\
+		{Pb(\C)}\ar[r, hook] & {S(\C).}
+	\end{tikzcd}
+\]
+If we manage to define all the three functors such that the statement above holds, and the assignment $\C\mapsto \mathcal{S}(\C)$ (resp. $S(\C)$, $Pb(\C)$) preserves flexible limits and filtered colimits, then we can construct $\Rep_B$ -- the 2-category of categories with finite limits, and representable arrows, where 2-cells are natural transformations whose components at representable arrows are pullback squares -- as the following pullback:
+
+\[\begin{tikzcd}
+	{\Rep_B} && {Ps(Comp, \Cat)^2} \\
+	\\
+	{\Rep_0} && {Ps(Cosp, \Cat)^2,}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+	\arrow["{(i^*)^2}", from=1-3, to=3-3]
+	\arrow["V"', from=3-1, to=3-3]
+\end{tikzcd}\]
+where the first component of the 2-functor $V$ is defined by
+$$
+\begin{tikzcd}
+	\C\ar["F"',d]&	{Pb(\C)}\ar[r, hook]\ar[d]& {S(\C)}\ar[d] & {\mathcal{S}(\C)}\ar[l, hook]\ar[d]\\
+	\D &    {Pb(\D)}\ar[r, hook]& {S(\D)}& {\mathcal{S}(\D)},\ar[l, hook]\\
+ \arrow[from=2-1, to=2-2, maps to, shift left=9]
+\end{tikzcd}
+$$
+and the second component is the same, just with swapped $Pb$ and $\mathcal{S}$.
 
 \subsection{Stage 7: Representable Morphisms are Exponentiable -- $\Rep_C$}\label{sec:rep has exp}
 In the last but one stage, we add exponentials along representable morphisms. That is, we need to add right adjoints to all the functors $f^*\colon\C/c\to\C/c'$ for a representable $f\colon c'\rightarrowtriangle c$. Since we cannot add these adjoints one by one, we choose a different approach. We consider the version of a pullback functor
