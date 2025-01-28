@@ -2241,9 +2241,9 @@ Then pullbacks correspond to chosen squares in $\C$ if and only if we have facto
 If we manage to define all the three 2-functors such that the statement above holds, and the assignment $\C\mapsto \mathcal{S}(\C)$ (resp. $Sq(C)$, $Pb(\C)$) preserves flexible limits and filtered colimits, then we can construct $\Rep_B$ -- the 2-category of categories with finite limits, and representable arrows, where 2-cells are natural transformations whose components at representable arrows are pullback squares -- as the following pullback:
 
 \[\begin{tikzcd}
-	{\Rep_B} && {Ps(Comp, \Cat)^2} \\
+	{\Rep_B} && {[Comp, \Cat]^2} \\
 	\\
-	{\Rep_0} && {Ps(Cosp, \Cat)^2,}
+	{\Rep_0} && {[Cosp, \Cat]^2,}
 	\arrow[from=1-1, to=1-3]
 	\arrow[from=1-1, to=3-1]
 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
@@ -2275,28 +2275,42 @@ and the second component is the same, just with swapped $Pb$ and $\mathcal{S}$.
 The definition of $Pb$ is a bit more delicate.
 We constructed $\Lex$ as the 2-category of categories with a specified choice of limits for every finite diagram. 
 Therefore, the first proposal might be to define $Pb(\C)$ as the category of cospans in $\C$ and the inclusion $Pb(\C)\to Sq(\C)$ by computing the pullback. 
-However, this would ensure only that the chosen pullbacks are among marked squares in the end, but we would like all pullback squares to be marked. 
-We fix this in two steps. Denote $U_{\Lex}\colon\Lex\to\Cat$ the forgetful functor. First, we consider the following pullback (in $2$-$\CAT(\Lex,\Cat)$):
+However, this would ensure only that the chosen pullbacks are among chosen squares in the end, but we would like all pullback squares to be marked. 
+We fix this in two steps. Denote $U_{\Lex}\colon\Lex\to\Cat$ the forgetful 2-functor. First, we consider the following pullback (in $2$-$\CAT(\Lex,\Cat)$):
 \[\begin{tikzcd}
 	{Pb_{iso}}\ar[r]\ar[d] & \Cat(I,U_{\Lex}-)\ar[d]\\
 	\Cat(\mathbf{2}\times\mathbf{2},U_{\Lex}-)\ar[r] & {U_{\Lex}^2,}
 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
-where the right arrow takes an isomorphism and return its domain and codomain, and the bottom arrow takes a commutative square 
+where the right arrow takes an isomorphism and returns its domain and codomain, and the bottom arrow takes a commutative square 
 	\[\begin{tikzcd}
-		a\ar[r, "f"]\ar[d, "g"] & b\ar[d, "h"]\\
-		c\ar[r, "k"] & d
+		a\ar[r]\ar[d] & b\ar[d]\\
+		c\ar[r] & d
 	\end{tikzcd}\]
-and return $a$ and the pullback of $k$ and $h$.
+and returns $(a, c\times_{d}b)$.
 
-Second, we obtain $Pb$ as the following equaliser:
+Second, we obtain $Pb$ as the equaliser of the following diagram:
 \[\begin{tikzcd}
 	{Pb_{iso}} & {\Cat(\mathbf{2},U_{\Lex}-)^2,}
 	\arrow["{{\alpha}}", shift left=2, from=1-1, to=1-2]
 	\arrow["{{\beta}}"', shift right=2, from=1-1, to=1-2]
 \end{tikzcd}\]
-where $\alpha$ takes the pullback cone and composes it with the isomorphism, whereas $\beta$ just forgets the isomorphism and the right and bottem arrows in the square.
-Now, we have obtained a 2-functor that is almost what we would like. An object in $Pb_{iso}(\C)$ is a cone over a cospan together with an isomorphism of the summit of the cone with the pullback of the cospan.
+where given the input
+	\[\left(\begin{tikzcd}
+		a\ar[r, "f"]\ar[d, "g"'] & b\ar[d]\\
+		c\ar[r] & d
+	\end{tikzcd},
+		a\xrightarrow{h}c\times_d b\right),\]
+\begin{itemize}
+	\item $\alpha$ returns $(\pi_1h\colon a\to c, \pi_2h\colon a\to b)$ ($\pi_i$ being the pullback projections);
+	\item $\beta$ returns $(g, f)$.
+\end{itemize}
+
+\begin{nota}
+	We abuse notation and denote $Pb$ also the 2-functor that is obtained as the composition of $Pb$ constructed above and the forgetful functor $\Rep_0\to\Lex$.
+\end{nota}
+
+
 
 \subsection{Stage 7: Representable Morphisms are Exponentiable -- $\Rep_C$}\label{sec:rep has exp}
 In the last but one stage, we add exponentials along representable morphisms. That is, we need to add right adjoints to all the functors $f^*\colon\C/c\to\C/c'$ for a representable $f\colon c'\rightarrowtriangle c$. Since we cannot add these adjoints one by one, we choose a different approach. We consider the version of a pullback functor
